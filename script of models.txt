@@ -1,0 +1,56 @@
+root@DGX-Node81:/home/atif/AI0-Server/games#         root@DGX-Node81:/home/atif/AI0-Server/pgns#
+./sc.sh
+echo "in script"
+for i in {1..30}
+do
+printf "\n \n sleep 2 days \n \n \n LOOP...... $i"
+printf " /30"
+sleep 2d
+mv run1 run1-o
+mkdir run1
+rm -rf run1-o
+done
+
+root@DGX-Node81:/home/atif/AI0-Server/tt/test
+./sc.sh:
+echo "running script"
+for i in {1..8}
+
+do
+printf " \n \n \n in Script................................................................................\n\n \n LOOP: $i \n \n "
+python3 t2.py
+done
+
+
+t2.py:
+
+#!pip install beautifulsoup4
+import requests
+from bs4 import BeautifulSoup
+url= 'https://training.lczero.org/networks/?show_all=0'
+page=requests.get(url)
+soup=BeautifulSoup(page.content,'html.parser')
+table= soup.find('tbody')
+li= table.find_all('a')
+pre= 'https://training.lczero.org'
+l2=[]
+for i in li:
+    if 'weights_run1_' in i['download']:
+        #print (i['href'])
+        f=l2.append(pre + i['href'])
+
+import os
+final_list=l2[0:8]
+#pint(final_list[8])
+for l in final_list:
+    try:
+        os.system('\n \n date')
+        os.system("\n \n echo sleeping 2h;sleep 2h")
+        os.system('wget '+ l)
+        if pre in l:
+            v1= l.replace(pre+'/','')
+            os.system("curl -F 'file=@"+v1 +"' -F 'training_id=1' -F 'layers=24' -F 'filters=320' http://10.10.25.101:8080/upload_network")
+    except Exception as e:
+        print (e)
+os.system("rm get*")
+
